@@ -23,7 +23,6 @@ export class CategoryListComponent implements OnInit {
   }
 
   deleteCategory(category) {
-
     const mustDelete = confirm("Deseja realmente excluir este item?");
 
     if (mustDelete) {
@@ -33,5 +32,5 @@ export class CategoryListComponent implements OnInit {
       )
     }
   }
-  
+
 }
