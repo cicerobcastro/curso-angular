@@ -1,7 +1,11 @@
 <nav class="mb-5">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-    <li class="breadcrumb-item"><a routerLink="/categories">Lançamentos</a></li>
+    <li class="breadcrumb-item">
+      <a routerLink="/">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a routerLink="/categories">Lançamentos</a>
+    </li>
     <li class="breadcrumb-item active">{{pageTitle}}</li>
   </ol>
 </nav>
@@ -30,7 +34,7 @@
         <div class="form-group col-md-2">
           <label for="type">Tipo</label>
 
-          <select name="type" id="type" formControlName="Type" class="form-control">
+          <select name="type" id="type" formControlName="type" class="form-control">
             <option value="expense">Despesa</option>
             <option value="revenue">Receita</option>
           </select>
@@ -65,6 +69,36 @@
           </div>
         </div>
 
+        <!--date-->
+        <div class="form-group col-md-2">
+          <label for="date">Data</label>
+          <p-calendar id="date" formControlName="date" inputStyleClass="form-control" dataType="string" dateFormat="dd/mm/yy" [locale]="ptBR"
+            [showButtonBar]="true">
+          </p-calendar>
+
+          <div class="text-danger" *ngIf="entryForm.get('date').invalid && entryForm.get('date').touched">
+            <div *ngIf="entryForm.get('date').errors.required">dado obrigatório</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!--paid-->
+          <div class="form-group col-md-2">
+            <label for="name">Pago</label>
+            <div class="btn-group">
+              <label for="btn btn-outline-info">
+                Pago
+              </label>
+              <label for="btn btn-outline-info">
+                Pendente
+              </label>
+            </div>
+            <div class="text-danger" *ngIf="entryForm.get('paid').invalid && entryForm.get('paid').touched">
+              <div *ngIf="entryForm.get('paid').errors.required">dado obrigatório</div>
+            </div>
+          </div>
+        </div>
+
         <!-- description -->
         <div class="form-group col-md-8">
           <label for="description">Descrição</label>
@@ -81,8 +115,7 @@
     </ul>
   </div>
 
-  <button [disabled]="submittingForm || entryForm.invalid" type="submit"
-    class="btn btn-primary btn-lg float-right mt-3">
+  <button [disabled]="submittingForm || entryForm.invalid" type="submit" class="btn btn-primary btn-lg float-right mt-3">
     Salvar
   </button>
 
